@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load static %}
+
+<h1>{{ title }}</h1>
+<ul>
+    {% for p in posts %}
+    <li>
+        <p class="first">{{ p.cat }}</p>
+        <div class="text">
+            {% if p.photo %}
+            <img src="{{ p.photo.url }}" class="image" alt="">
+            {% else %}
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ae79e450e012013962eb9c59ef05798db23b7456f8aeefe2490d9ae52aa32396a&amp;width=769&amp;height=512&amp;lang=ru_RU&amp;scroll=true"></script>
+            {% endif %}
+            <h2><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h2>
+            <p>{{ p.content|safe|truncatewords:50 }}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
